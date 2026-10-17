@@ -21,7 +21,7 @@ namespace Detail{
 namespace Info{
     const std::string NAME = "selfStudio-STD-EXP";    // 名称 
     const std::string VERSION = "selfStudio-STD-EXP GEN 0.1.0";    // 版本信息 
-    const std::string DETAIL = "selfStudio Standard 0.1.0 Experiment for GENdows";    // 详情 
+    const std::string DETAIL = "selfStudio Standard 0.1.0 General Experiment";    // 详情 
     const std::string THEME[4]= {"\033[34m", "\033[44m", "\033[94m", "\033[104m"};    // 主题色 blue : Standard FGC, Standard BGC, Light FGC, Light BGC
     const std::pair<std::string, std::map<std::string ,std::string>> HELPS[] = {    // 帮助 
         {
