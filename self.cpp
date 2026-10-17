@@ -1,22 +1,16 @@
+// selfStudio-STD-EXP GEN 0.1.0
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <map>
 #include <utility>
-
-struct Command{
-    std::string name;
-    std::vector<std::pair<std::string, std::string>> args;
-    Command(std::string name, std::vector<std::pair<std::string, std::string>> args = {}){
-        this->name = name;
-        this->args = args;
-    }
-};
+#include <cstdlib>
 
 // 细节处理
 namespace Detail{
-    // ERROR_QUIT 输出错误信息
-    void ERROR_QUIT(std::string info, bool forceExit=false, int exitCode = 2){
+    // OUTPUT_ERROR 输出错误信息
+    void OUTPUT_ERROR(std::string info, bool forceExit=false, int exitCode = 2){
         std::cerr << "\033[31m[Error] " << info << "\033[0m\n";
         if (forceExit) std::exit(exitCode);
     }
@@ -25,22 +19,20 @@ namespace Detail{
 
 // 信息
 namespace Info{
-    const std::string NAME = "self-STD-EXP";    // 名称 
-    const std::string VERSION = "self-STD-EXP WIN 0.1.0";    // 版本信息 
-    const std::string DETAIL = "self Standard 0.1.0 Experiment for Windows";    // 详情 
+    const std::string NAME = "selfStudio-STD-EXP";    // 名称 
+    const std::string VERSION = "selfStudio-STD-EXP GEN 0.1.0";    // 版本信息 
+    const std::string DETAIL = "selfStudio Standard 0.1.0 Experiment for GENdows";    // 详情 
     const std::string THEME[4]= {"\033[34m", "\033[44m", "\033[94m", "\033[104m"};    // 主题色 blue : Standard FGC, Standard BGC, Light FGC, Light BGC
     const std::pair<std::string, std::map<std::string ,std::string>> HELPS[] = {    // 帮助 
         {
-            "Special Args: ",
+            "Special arguments: ",
             {
                 {"--version  ", "  Get version"},
-                {"--info     ", "  Get information"},
-                {"--help     ", "  Get help"},
-                {"--view     ", "  Get information view"}
+                {"--help     ", "  Get help"}
             }
         },
         {
-            "Standard Command Form: " + THEME[2] + "<command>" + THEME[0] + " --<args> <values>\033[0m", 
+            "Standard command form: " + THEME[2] + "<command>" + THEME[0] + " --<args> <values>\033[0m", 
             {}
         },
         {
@@ -71,8 +63,8 @@ namespace Info{
             "|                                                              |\n"
             "| ==========================================================   |\n"
             "|                                                              |\n"
-            "| > selfSuidio-STD-EXP WIN 0.1.0                               |\n"
-            "| > selfStudio Standard 0.1.0 for Windows Experiment           |\n"
+            "| > selfStudio-STD-EXP GEN 0.1.0                               |\n"
+            "| > selfStudio Standard 0.1.0 General Experiment               |\n"
             "| > A local personal tool                                      |\n"
             "|                                                              |\n"
             "| ==========================================================   |\n"
@@ -94,16 +86,11 @@ int main(int argc, char* argv[]){
     std::vector<std::string> args(argv, argv+argc);
 
     if (args.size() < 2){
-        Detail::ERROR_QUIT("Wrong number of arguments");
+        Detail::OUTPUT_ERROR("Wrong number of arguments");
         return 2;
     }
     if (args[1] == "--version"){
         std::cout << Info::VERSION;
-
-    }else if (args[1] == "--info"){
-        std::cout << Info::NAME << std::endl;
-        std::cout << Info::VERSION << std::endl;
-        std::cout << Info::DETAIL << std::endl;
     
     }else if (args[1] == "--help"){
         for (auto [key, val]:Info::HELPS){
@@ -113,11 +100,10 @@ int main(int argc, char* argv[]){
             }
             std::cout << std::endl;
         }
-    }else if(args[1] == "--view"){
-        Info::VIEW();
+
     }else if(args[1] == "info"){
         if (args.size() < 3){
-            Detail::ERROR_QUIT("Wrong number of arguments");
+            Detail::OUTPUT_ERROR("Wrong number of arguments");
             return 2;
         }
         if (args[2] == "--version"){
@@ -139,11 +125,11 @@ int main(int argc, char* argv[]){
         }else if(args[2] == "--view"){
             Info::VIEW();
         }else{
-            Detail::ERROR_QUIT("Wrong command: " + args[1] + " (use 'self --help' to get help)");
+            Detail::OUTPUT_ERROR("Wrong command of 'info': " + args[2] + " (use 'self --help' to get help)");
             return 2;
         }
     }else{
-        Detail::ERROR_QUIT("Wrong command: " + args[1] + " (use 'self --help' to get help)");
+        Detail::OUTPUT_ERROR("Wrong command: " + args[1] + " (use 'self --help' to get help)");
         return 2;
     }
     return 0;
